@@ -10,6 +10,7 @@
     "postinstall": "husky install"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.8.1",
     "next": "12.1.4",
     "next-redux-wrapper": "^7.0.5",
     "node-sass": "^7.0.1",
