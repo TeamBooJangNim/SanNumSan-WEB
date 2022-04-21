@@ -21,6 +21,7 @@
     "redux-devtools-extension": "^2.13.9"
   },
   "devDependencies": {
+    "@next/eslint-plugin-next": "latest",
     "@types/node": "17.0.23",
     "@types/prettier": "^2",
     "@types/react": "18.0.0",

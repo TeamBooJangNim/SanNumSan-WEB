@@ -33,6 +33,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         [null, {\
           "packageLocation": "./",\
           "packageDependencies": [\
+            ["@next/eslint-plugin-next", "npm:12.1.5"],\
             ["@reduxjs/toolkit", "virtual:f1aec8e2e3db7a06cb61725bd1b8a5ba35a997f944fe17aeee2e3ce56fa3808847dbe48ca89b8d5c8cc494bd8570bdfcadda4362da1eae5b68b878b08756169d#npm:1.8.1"],\
             ["@types/node", "npm:17.0.23"],\
             ["@types/prettier", "npm:2.6.0"],\
@@ -176,6 +177,14 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@next-eslint-plugin-next-npm-12.1.4-37508c8682-6908d3ea06.zip/node_modules/@next/eslint-plugin-next/",\
           "packageDependencies": [\
             ["@next/eslint-plugin-next", "npm:12.1.4"],\
+            ["glob", "npm:7.1.7"]\
+          ],\
+          "linkType": "HARD"\
+        }],\
+        ["npm:12.1.5", {\
+          "packageLocation": "./.yarn/cache/@next-eslint-plugin-next-npm-12.1.5-8353c06ce1-fe070fbd42.zip/node_modules/@next/eslint-plugin-next/",\
+          "packageDependencies": [\
+            ["@next/eslint-plugin-next", "npm:12.1.5"],\
             ["glob", "npm:7.1.7"]\
           ],\
           "linkType": "HARD"\
@@ -5514,6 +5523,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./",\
           "packageDependencies": [\
             ["sunnumsan-web", "workspace:."],\
+            ["@next/eslint-plugin-next", "npm:12.1.5"],\
             ["@reduxjs/toolkit", "virtual:f1aec8e2e3db7a06cb61725bd1b8a5ba35a997f944fe17aeee2e3ce56fa3808847dbe48ca89b8d5c8cc494bd8570bdfcadda4362da1eae5b68b878b08756169d#npm:1.8.1"],\
             ["@types/node", "npm:17.0.23"],\
             ["@types/prettier", "npm:2.6.0"],\

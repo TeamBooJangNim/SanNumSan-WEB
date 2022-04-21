@@ -109,6 +109,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@next/eslint-plugin-next@npm:latest":
+  version: 12.1.5
+  resolution: "@next/eslint-plugin-next@npm:12.1.5"
+  dependencies:
+    glob: 7.1.7
+  checksum: fe070fbd42f699b0e158d2ea276569ad686343c78fb698c1835cd587862903bc2d146e04dd747495e186019cff685f36120b3953afce8b0c9f0fb43cd58798a7
+  languageName: node
+  linkType: hard
+
 "@next/swc-android-arm-eabi@npm:12.1.4":
   version: 12.1.4
   resolution: "@next/swc-android-arm-eabi@npm:12.1.4"
@@ -4559,6 +4568,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "sunnumsan-web@workspace:."
   dependencies:
+    "@next/eslint-plugin-next": latest
     "@reduxjs/toolkit": ^1.8.1
     "@types/node": 17.0.23
     "@types/prettier": ^2
