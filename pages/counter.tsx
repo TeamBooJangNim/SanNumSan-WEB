@@ -1,7 +1,7 @@
-import { useCallback } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import * as counterActions from "../store/modules/counter";
-import { RootState } from "../store/modules";
+import { useCallback } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import * as counterActions from '../store/modules/counter';
+import { RootState } from '../store/modules';
 
 export default function Test() {
   const dispatch = useDispatch();
