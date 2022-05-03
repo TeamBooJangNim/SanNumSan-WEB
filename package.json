@@ -22,6 +22,7 @@
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "latest",
+    "@svgr/webpack": "^6.2.1",
     "@types/node": "17.0.23",
     "@types/prettier": "^2",
     "@types/react": "18.0.0",
