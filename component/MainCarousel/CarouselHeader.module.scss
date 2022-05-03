@@ -1,0 +1,17 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1rem 0 2rem;
+
+  h1 {
+    font-family: Pretendard;
+    font-size: 20px;
+  }
+}
+
+.button__container {
+  width: 8rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
