@@ -42,6 +42,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/react-dom", "npm:18.0.0"],\
             ["@typescript-eslint/eslint-plugin", "virtual:f1aec8e2e3db7a06cb61725bd1b8a5ba35a997f944fe17aeee2e3ce56fa3808847dbe48ca89b8d5c8cc494bd8570bdfcadda4362da1eae5b68b878b08756169d#npm:5.20.0"],\
             ["@typescript-eslint/parser", "virtual:f1aec8e2e3db7a06cb61725bd1b8a5ba35a997f944fe17aeee2e3ce56fa3808847dbe48ca89b8d5c8cc494bd8570bdfcadda4362da1eae5b68b878b08756169d#npm:5.20.0"],\
+            ["axios", "npm:0.27.2"],\
             ["eslint", "npm:8.13.0"],\
             ["eslint-config-next", "virtual:f1aec8e2e3db7a06cb61725bd1b8a5ba35a997f944fe17aeee2e3ce56fa3808847dbe48ca89b8d5c8cc494bd8570bdfcadda4362da1eae5b68b878b08756169d#npm:12.1.4"],\
             ["eslint-config-prettier", "virtual:f1aec8e2e3db7a06cb61725bd1b8a5ba35a997f944fe17aeee2e3ce56fa3808847dbe48ca89b8d5c8cc494bd8570bdfcadda4362da1eae5b68b878b08756169d#npm:8.5.0"],\
@@ -3805,6 +3806,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["axios", [\
+        ["npm:0.27.2", {\
+          "packageLocation": "./.yarn/cache/axios-npm-0.27.2-dbe3a48aea-38cb754046.zip/node_modules/axios/",\
+          "packageDependencies": [\
+            ["axios", "npm:0.27.2"],\
+            ["follow-redirects", "virtual:dbe3a48aea1dd5649e16abaf23d4ae05582d2149e16141955113766a0f84f681baf358c77ddccfc82eb23e4ccc66c6c912df62a9c01f2a83f1842bf86cc297b1#npm:1.15.0"],\
+            ["form-data", "npm:4.0.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["axobject-query", [\
         ["npm:2.2.0", {\
           "packageLocation": "./.yarn/cache/axobject-query-npm-2.2.0-6553738f52-96b8c7d807.zip/node_modules/axobject-query/",\
@@ -5481,6 +5493,28 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["follow-redirects", [\
+        ["npm:1.15.0", {\
+          "packageLocation": "./.yarn/cache/follow-redirects-npm-1.15.0-497d406c03-eaec81c3e0.zip/node_modules/follow-redirects/",\
+          "packageDependencies": [\
+            ["follow-redirects", "npm:1.15.0"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:dbe3a48aea1dd5649e16abaf23d4ae05582d2149e16141955113766a0f84f681baf358c77ddccfc82eb23e4ccc66c6c912df62a9c01f2a83f1842bf86cc297b1#npm:1.15.0", {\
+          "packageLocation": "./.yarn/__virtual__/follow-redirects-virtual-80191232fb/0/cache/follow-redirects-npm-1.15.0-497d406c03-eaec81c3e0.zip/node_modules/follow-redirects/",\
+          "packageDependencies": [\
+            ["follow-redirects", "virtual:dbe3a48aea1dd5649e16abaf23d4ae05582d2149e16141955113766a0f84f681baf358c77ddccfc82eb23e4ccc66c6c912df62a9c01f2a83f1842bf86cc297b1#npm:1.15.0"],\
+            ["@types/debug", null],\
+            ["debug", null]\
+          ],\
+          "packagePeers": [\
+            "@types/debug",\
+            "debug"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["forever-agent", [\
         ["npm:0.6.1", {\
           "packageLocation": "./.yarn/cache/forever-agent-npm-0.6.1-01dae53bf9-766ae6e220.zip/node_modules/forever-agent/",\
@@ -5495,6 +5529,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/form-data-npm-2.3.3-c016cc11c0-10c1780fa1.zip/node_modules/form-data/",\
           "packageDependencies": [\
             ["form-data", "npm:2.3.3"],\
+            ["asynckit", "npm:0.4.0"],\
+            ["combined-stream", "npm:1.0.8"],\
+            ["mime-types", "npm:2.1.35"]\
+          ],\
+          "linkType": "HARD"\
+        }],\
+        ["npm:4.0.0", {\
+          "packageLocation": "./.yarn/cache/form-data-npm-4.0.0-916facec2d-01135bf867.zip/node_modules/form-data/",\
+          "packageDependencies": [\
+            ["form-data", "npm:4.0.0"],\
             ["asynckit", "npm:0.4.0"],\
             ["combined-stream", "npm:1.0.8"],\
             ["mime-types", "npm:2.1.35"]\
@@ -8633,6 +8677,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/react-dom", "npm:18.0.0"],\
             ["@typescript-eslint/eslint-plugin", "virtual:f1aec8e2e3db7a06cb61725bd1b8a5ba35a997f944fe17aeee2e3ce56fa3808847dbe48ca89b8d5c8cc494bd8570bdfcadda4362da1eae5b68b878b08756169d#npm:5.20.0"],\
             ["@typescript-eslint/parser", "virtual:f1aec8e2e3db7a06cb61725bd1b8a5ba35a997f944fe17aeee2e3ce56fa3808847dbe48ca89b8d5c8cc494bd8570bdfcadda4362da1eae5b68b878b08756169d#npm:5.20.0"],\
+            ["axios", "npm:0.27.2"],\
             ["eslint", "npm:8.13.0"],\
             ["eslint-config-next", "virtual:f1aec8e2e3db7a06cb61725bd1b8a5ba35a997f944fe17aeee2e3ce56fa3808847dbe48ca89b8d5c8cc494bd8570bdfcadda4362da1eae5b68b878b08756169d#npm:12.1.4"],\
             ["eslint-config-prettier", "virtual:f1aec8e2e3db7a06cb61725bd1b8a5ba35a997f944fe17aeee2e3ce56fa3808847dbe48ca89b8d5c8cc494bd8570bdfcadda4362da1eae5b68b878b08756169d#npm:8.5.0"],\
