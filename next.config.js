@@ -9,6 +9,9 @@ const nextConfig = {
     conf.resolve.modules.push(__dirname);
     return conf;
   },
-}
+  images: {
+    domains: ['images.france.fr'],
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
