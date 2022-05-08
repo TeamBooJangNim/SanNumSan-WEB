@@ -1,4 +1,4 @@
-import type { GetServerSidePropsContext } from 'next';
+import type { GetStaticPaths, GetStaticProps, GetStaticPropsContext, InferGetStaticPropsType } from 'next';
 import Head from 'next/head';
 import Header from '@/component/Header/Header';
 import { RemoteSanData } from '@/service/api/types/san';
@@ -9,7 +9,7 @@ import ShareIcon from '@/assets/icon/icon_share.svg';
 import ClimbUpIcon from '@/assets/icon/icon_up.svg';
 import ClimbDownIcon from '@/assets/icon/icon_down.svg';
 
-function SanDetail({ sanData }: { sanData: RemoteSanData }) {
+function SanDetail({ sanData }: InferGetStaticPropsType<RemoteSanData>) {
   const { name, level, height, length, defaultImage } = sanData;
   return (
     <main>
@@ -63,10 +63,20 @@ function SanDetail({ sanData }: { sanData: RemoteSanData }) {
   );
 }
 
-export async function getServerSideProps({ params }: GetServerSidePropsContext) {
+export const getStaticPaths: GetStaticPaths = async () => {
+  const ids = await api.sanService.getSanIdList();
+  const paths = ids.map((id) => ({ params: { id: id.toString() } }));
+  return {
+    paths,
+    fallback: true,
+  };
+};
+
+export const getStaticProps: GetStaticProps = async ({ params }: GetStaticPropsContext) => {
   const id = +(params?.id ?? -1);
   const response = await api.sanService.getSanDetail(id);
+  if (!response) return { props: {} };
   return { props: { sanData: response } };
-}
+};
 
 export default SanDetail;
