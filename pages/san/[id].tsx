@@ -1,5 +1,6 @@
 import type { GetServerSidePropsContext } from 'next';
 import Head from 'next/head';
+import React from 'react';
 import Header from '@/component/Header/Header';
 import { RemoteSanData } from '@/service/api/types/san';
 import { api } from '@/service/api';
@@ -8,9 +9,32 @@ import ProceedIcon from '@/assets/icon/icon_proceed.svg';
 import ShareIcon from '@/assets/icon/icon_share.svg';
 import ClimbUpIcon from '@/assets/icon/icon_up.svg';
 import ClimbDownIcon from '@/assets/icon/icon_down.svg';
+import FloatingModal from '@/component/FloatingModal/FloatingModal';
+import BottomSheetModal from '@/component/BottomSheetModal/BottomSheetModal';
 
 function SanDetail({ sanData }: { sanData: RemoteSanData }) {
   const { name, level, height, length, defaultImage } = sanData;
+  const [image, setImage] = React.useState(defaultImage);
+  const [comment, setComment] = React.useState('');
+  const [editState, setEditState] = React.useState<
+    'idle' | 'edit-modal-view' | 'write-bottomsheet-view' | 'complete' | 'save-modal-view'
+  >('idle');
+  const imageInputRef = React.createRef<HTMLInputElement>();
+  const triggerImageBoxOpen = () => {
+    imageInputRef.current?.dispatchEvent(new MouseEvent('click'));
+  };
+
+  const onImageInput = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    try {
+      const target = e.target as HTMLInputElement;
+      if (!target.files) return;
+      const file: File = (target.files as FileList)[0];
+      setImage(URL.createObjectURL(file));
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   return (
     <main>
       <Head>
@@ -22,7 +46,7 @@ function SanDetail({ sanData }: { sanData: RemoteSanData }) {
       <section className="san-detail">
         <div className="san-grid-table">
           <div className="title-wrapper">
-            <div className="title">북한산</div>
+            <div className="title">{name}</div>
           </div>
           <div className="level-wrapper">
             <div>level</div>
@@ -51,14 +75,63 @@ function SanDetail({ sanData }: { sanData: RemoteSanData }) {
           </div>
         </div>
         <div className="image-wrapper">
-          <Image src={defaultImage} alt={name} layout="responsive" width="100%" height="100%" objectFit="cover" />
+          <Image
+            src={image}
+            alt={name}
+            layout="responsive"
+            width="100%"
+            height="100%"
+            objectFit="cover"
+            onClick={triggerImageBoxOpen}
+          />
+          <input type="file" accept="image/*" ref={imageInputRef} onChange={onImageInput} />
         </div>
+        {comment.length !== 0 && <div className="comment-wrapper">{comment}</div>}
         <div className="button-wrapper">
           <ShareIcon />
           <div />
-          <ProceedIcon />
+          {comment.length === 0 ? (
+            <ProceedIcon onClick={() => setEditState('edit-modal-view')} />
+          ) : (
+            <ProceedIcon onClick={() => setEditState('save-modal-view')} />
+          )}
         </div>
       </section>
+      {(editState === 'edit-modal-view' || editState === 'write-bottomsheet-view') && (
+        <FloatingModal onCloseButtonClick={() => setEditState('idle')}>
+          <div>{name}</div>
+          <Image src={image} alt="thumbnail image" layout="responsive" width="100%" height="100%" objectFit="cover" />
+          <div>{new Date().getDate().toLocaleString()}</div>
+          <div>{height}</div>
+          <div>{length}</div>
+          <div onClick={() => setEditState('write-bottomsheet-view')}>
+            {comment.length === 0 ? <div>⛰ 등산 기록을 남겨보세요! ⛰</div> : <div>{comment}</div>}
+          </div>
+          <div>
+            <div onClick={() => setEditState('idle')}></div>
+            <div onClick={() => setEditState('complete')}></div>
+          </div>
+        </FloatingModal>
+      )}
+      {editState === 'write-bottomsheet-view' && (
+        <BottomSheetModal
+          onChangeText={(text: string) => {
+            setComment(text);
+            setEditState('edit-modal-view');
+          }}
+        />
+      )}
+      {editState === 'save-modal-view' && (
+        <FloatingModal onCloseButtonClick={() => setEditState('idle')}>
+          <div>{name}</div>
+          <Image src={image} alt="thumbnail image" layout="responsive" width="100%" height="100%" objectFit="cover" />
+          <div>{new Date().getDate().toLocaleString()}</div>
+          <div>{height}</div>
+          <div>{length}</div>
+          <div>{comment}</div>
+          <div></div>
+        </FloatingModal>
+      )}
     </main>
   );
 }

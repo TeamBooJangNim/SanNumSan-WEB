@@ -74,6 +74,9 @@
   }
   .image-wrapper {
     padding: 22px 18px;
+    input {
+      display: none;
+    }
   }
   .button-wrapper {
     display: grid;
