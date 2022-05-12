@@ -1,4 +1,4 @@
-import styles from './CarouselHeader.module.scss';
+import styles from './styles/CarouselHeader.module.scss';
 import LeftArrowButton from '@/assets/icon/leftArrow.svg';
 import RightArrowButton from '@/assets/icon/rightArrow.svg';
 
