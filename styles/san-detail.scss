@@ -108,7 +108,7 @@
   color: var(--color-dark-grey);
 }
 
-.edit-modal-image {
+.edit-modal-image-wrapper {
   position: relative;
   margin: 12px;
 }
@@ -120,7 +120,10 @@
   color: white;
   width: 100%;
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  padding-right: 22px;
 }
 
 .edit-modal-comment-empty {

@@ -16,6 +16,9 @@ import NextIcon from '@/assets/icon/icon_next.svg';
 import DownloadIcon from '@/assets/icon/icon_download.svg';
 import FloatingModal from '@/component/FloatingModal/FloatingModal';
 import BottomSheetModal from '@/component/BottomSheetModal/BottomSheetModal';
+import domtoimage from 'dom-to-image';
+import { saveAs } from 'file-saver';
+import { getDateString } from '@/service/misc';
 
 function SanDetail({ sanData }: { sanData: RemoteSanData }) {
   const { name, level, height, length, defaultImage } = sanData;
@@ -24,6 +27,7 @@ function SanDetail({ sanData }: { sanData: RemoteSanData }) {
   const [editState, setEditState] = React.useState<
     'idle' | 'edit-modal-view' | 'write-bottomsheet-view' | 'save-modal-view' | 'share-modal-view'
   >('idle');
+  const cardRef = React.createRef<HTMLDivElement>();
   const imageInputRef = React.createRef<HTMLInputElement>();
   const triggerImageBoxOpen = () => {
     imageInputRef.current?.dispatchEvent(new MouseEvent('click'));
@@ -40,8 +44,18 @@ function SanDetail({ sanData }: { sanData: RemoteSanData }) {
     }
   };
 
-  const saveCard = () => {
-    console.log('save card');
+  const saveCard = async () => {
+    if (!cardRef.current) return;
+    const scale = 3;
+    const cardBlob = await domtoimage.toBlob(cardRef.current, {
+      width: cardRef.current.clientWidth * scale,
+      height: cardRef.current.clientHeight * scale,
+      style: {
+        transform: 'scale(' + scale + ')',
+        transformOrigin: 'top left',
+      },
+    });
+    saveAs(cardBlob, `${name}.png`);
   };
 
   return (
@@ -97,7 +111,7 @@ function SanDetail({ sanData }: { sanData: RemoteSanData }) {
         </div>
         {comment.length !== 0 && <div className="comment-wrapper">{comment}</div>}
         <div className="button-wrapper">
-          <ShareIcon />
+          <ShareIcon onClick={() => setEditState('share-modal-view')} />
           <div />
           {comment.length === 0 ? (
             <ProceedIcon onClick={() => setEditState('edit-modal-view')} />
@@ -112,12 +126,21 @@ function SanDetail({ sanData }: { sanData: RemoteSanData }) {
             <Image src={LogoGreen} alt="sannumsan" width={50} height={50} />
             <div>{name}</div>
           </div>
-          <div className="edit-modal-image">
-            <Image src={image} alt="thumbnail image" layout="responsive" width="100%" height="100%" objectFit="cover" />
-            <div className="edit-modal-image-info">
-              <div>{new Intl.DateTimeFormat().format(new Date())}</div>
-              <div>{length}km</div>
-              <div>{height}m</div>
+          <div className="edit-modal-image-wrapper">
+            <div className="edit-modal-image" ref={cardRef}>
+              <Image
+                src={image}
+                alt="thumbnail image"
+                layout="responsive"
+                width="100%"
+                height="100%"
+                objectFit="cover"
+              />
+              <div className="edit-modal-image-info">
+                <div>{getDateString(new Date())}</div>
+                <div>{length}km</div>
+                <div>{height}m</div>
+              </div>
             </div>
           </div>
           <div onClick={() => setEditState('write-bottomsheet-view')}>
@@ -159,12 +182,21 @@ function SanDetail({ sanData }: { sanData: RemoteSanData }) {
             <Image src={LogoGreen} alt="sannumsan" width={50} height={50} />
             <div>{name}</div>
           </div>
-          <div className="edit-modal-image">
-            <Image src={image} alt="thumbnail image" layout="responsive" width="100%" height="100%" objectFit="cover" />
-            <div className="edit-modal-image-info">
-              <div>{new Intl.DateTimeFormat().format(new Date())}</div>
-              <div>{length}km</div>
-              <div>{height}m</div>
+          <div className="edit-modal-image-wrapper">
+            <div className="edit-modal-image" ref={cardRef}>
+              <Image
+                src={image}
+                alt="thumbnail image"
+                layout="responsive"
+                width="100%"
+                height="100%"
+                objectFit="cover"
+              />
+              <div className="edit-modal-image-info">
+                <div>{getDateString(new Date())}</div>
+                <div>{length}km</div>
+                <div>{height}m</div>
+              </div>
             </div>
           </div>
           <div className="edit-modal-comment">{comment}</div>
