@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './FloatingModal.module.scss';
+import IconReset from '@/assets/icon/icon_reset.svg';
 
 type FloatingModalProps = {
   children: React.ReactNode;
@@ -8,12 +8,12 @@ type FloatingModalProps = {
 
 const FloatingModal = (props: FloatingModalProps) => {
   return (
-    <div className={styles.floatingModal}>
-      <div></div>
-      <div>
+    <div className="floating-modal">
+      <div className="floating-modal-background" onClick={props.onCloseButtonClick}></div>
+      <div className="floating-modal-foreground">
         <div>{props.children}</div>
-        <div onClick={props.onCloseButtonClick}></div>
       </div>
+      <IconReset onClick={props.onCloseButtonClick} />
     </div>
   );
 };

@@ -5,10 +5,15 @@ import Header from '@/component/Header/Header';
 import { RemoteSanData } from '@/service/api/types/san';
 import { api } from '@/service/api';
 import Image from 'next/image';
+import LogoGreen from '@/assets/img/logo_green.png';
 import ProceedIcon from '@/assets/icon/icon_proceed.svg';
 import ShareIcon from '@/assets/icon/icon_share.svg';
 import ClimbUpIcon from '@/assets/icon/icon_up.svg';
 import ClimbDownIcon from '@/assets/icon/icon_down.svg';
+import BeforeIcon from '@/assets/icon/icon_before.svg';
+import CheckIcon from '@/assets/icon/icon_check.svg';
+import NextIcon from '@/assets/icon/icon_next.svg';
+import DownloadIcon from '@/assets/icon/icon_download.svg';
 import FloatingModal from '@/component/FloatingModal/FloatingModal';
 import BottomSheetModal from '@/component/BottomSheetModal/BottomSheetModal';
 
@@ -17,7 +22,7 @@ function SanDetail({ sanData }: { sanData: RemoteSanData }) {
   const [image, setImage] = React.useState(defaultImage);
   const [comment, setComment] = React.useState('');
   const [editState, setEditState] = React.useState<
-    'idle' | 'edit-modal-view' | 'write-bottomsheet-view' | 'complete' | 'save-modal-view'
+    'idle' | 'edit-modal-view' | 'write-bottomsheet-view' | 'save-modal-view' | 'share-modal-view'
   >('idle');
   const imageInputRef = React.createRef<HTMLInputElement>();
   const triggerImageBoxOpen = () => {
@@ -33,6 +38,10 @@ function SanDetail({ sanData }: { sanData: RemoteSanData }) {
     } catch (err) {
       console.error(err);
     }
+  };
+
+  const saveCard = () => {
+    console.log('save card');
   };
 
   return (
@@ -93,23 +102,45 @@ function SanDetail({ sanData }: { sanData: RemoteSanData }) {
           {comment.length === 0 ? (
             <ProceedIcon onClick={() => setEditState('edit-modal-view')} />
           ) : (
-            <ProceedIcon onClick={() => setEditState('save-modal-view')} />
+            <DownloadIcon onClick={() => setEditState('save-modal-view')} />
           )}
         </div>
       </section>
       {(editState === 'edit-modal-view' || editState === 'write-bottomsheet-view') && (
         <FloatingModal onCloseButtonClick={() => setEditState('idle')}>
-          <div>{name}</div>
-          <Image src={image} alt="thumbnail image" layout="responsive" width="100%" height="100%" objectFit="cover" />
-          <div>{new Date().getDate().toLocaleString()}</div>
-          <div>{height}</div>
-          <div>{length}</div>
-          <div onClick={() => setEditState('write-bottomsheet-view')}>
-            {comment.length === 0 ? <div>⛰ 등산 기록을 남겨보세요! ⛰</div> : <div>{comment}</div>}
+          <div className="edit-modal-header">
+            <Image src={LogoGreen} alt="sannumsan" width={50} height={50} />
+            <div>{name}</div>
           </div>
-          <div>
-            <div onClick={() => setEditState('idle')}></div>
-            <div onClick={() => setEditState('complete')}></div>
+          <div className="edit-modal-image">
+            <Image src={image} alt="thumbnail image" layout="responsive" width="100%" height="100%" objectFit="cover" />
+            <div className="edit-modal-image-info">
+              <div>{new Intl.DateTimeFormat().format(new Date())}</div>
+              <div>{length}km</div>
+              <div>{height}m</div>
+            </div>
+          </div>
+          <div onClick={() => setEditState('write-bottomsheet-view')}>
+            {comment.length === 0 ? (
+              <div className="edit-modal-comment-empty">⛰ 등산 기록을 남겨보세요! ⛰</div>
+            ) : (
+              <div className="edit-modal-comment">{comment}</div>
+            )}
+          </div>
+          <div className="modal-bottom edit-modal-bottom">
+            <div onClick={() => setEditState('idle')}>
+              <BeforeIcon />
+            </div>
+            <div />
+            {comment.length === 0 ? (
+              <div onClick={() => setEditState('write-bottomsheet-view')}>
+                <NextIcon />
+              </div>
+            ) : (
+              <div onClick={() => setEditState('idle')}>
+                <CheckIcon />
+              </div>
+            )}
           </div>
         </FloatingModal>
       )}
@@ -119,17 +150,27 @@ function SanDetail({ sanData }: { sanData: RemoteSanData }) {
             setComment(text);
             setEditState('edit-modal-view');
           }}
+          closeBottomSheet={() => setEditState('idle')}
         />
       )}
-      {editState === 'save-modal-view' && (
+      {(editState === 'save-modal-view' || editState === 'share-modal-view') && (
         <FloatingModal onCloseButtonClick={() => setEditState('idle')}>
-          <div>{name}</div>
-          <Image src={image} alt="thumbnail image" layout="responsive" width="100%" height="100%" objectFit="cover" />
-          <div>{new Date().getDate().toLocaleString()}</div>
-          <div>{height}</div>
-          <div>{length}</div>
-          <div>{comment}</div>
-          <div></div>
+          <div className="edit-modal-header">
+            <Image src={LogoGreen} alt="sannumsan" width={50} height={50} />
+            <div>{name}</div>
+          </div>
+          <div className="edit-modal-image">
+            <Image src={image} alt="thumbnail image" layout="responsive" width="100%" height="100%" objectFit="cover" />
+            <div className="edit-modal-image-info">
+              <div>{new Intl.DateTimeFormat().format(new Date())}</div>
+              <div>{length}km</div>
+              <div>{height}m</div>
+            </div>
+          </div>
+          <div className="edit-modal-comment">{comment}</div>
+          <div className="modal-bottom save-modal-bottom" onClick={saveCard}>
+            <div className="save-modal-save-button">{editState === 'save-modal-view' ? '저장하기' : '공유하기'}</div>
+          </div>
         </FloatingModal>
       )}
     </main>

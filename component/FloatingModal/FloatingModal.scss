@@ -1,0 +1,28 @@
+.floating-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  gap: 26px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .floating-modal-background {
+    width: 100vw;
+    height: 100vh;
+    background-color: #000000c4;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .floating-modal-foreground {
+    z-index: 2;
+    width: calc(100vw - 36px);
+    background-color: white;
+  }
+  & svg {
+    z-index: 2;
+  }
+}
