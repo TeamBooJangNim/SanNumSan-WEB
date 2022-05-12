@@ -25,7 +25,7 @@ function SanDetail({ sanData }: { sanData: RemoteSanData }) {
   const [image, setImage] = React.useState(defaultImage);
   const [comment, setComment] = React.useState('');
   const [editState, setEditState] = React.useState<
-    'idle' | 'edit-modal-view' | 'write-bottomsheet-view' | 'save-modal-view' | 'share-modal-view'
+    'idle' | 'edit-modal-view' | 'write-bottomsheet-view' | 'save-modal-view' | 'share-modal-view' | 'complete'
   >('idle');
   const cardRef = React.createRef<HTMLDivElement>();
   const imageInputRef = React.createRef<HTMLInputElement>();
@@ -66,6 +66,11 @@ function SanDetail({ sanData }: { sanData: RemoteSanData }) {
 
   const shareCard = async () => {
     console.log('share card by web api');
+  };
+
+  const postSaveCard = () => {
+    console.log('send post request to remote server');
+    setEditState('complete');
   };
 
   return (
@@ -123,10 +128,10 @@ function SanDetail({ sanData }: { sanData: RemoteSanData }) {
         <div className="button-wrapper">
           <ShareIcon onClick={() => setEditState('share-modal-view')} />
           <div />
-          {comment.length === 0 ? (
-            <ProceedIcon onClick={() => setEditState('edit-modal-view')} />
-          ) : (
+          {editState === 'complete' ? (
             <DownloadIcon onClick={() => setEditState('save-modal-view')} />
+          ) : (
+            <ProceedIcon onClick={() => setEditState('edit-modal-view')} />
           )}
         </div>
       </section>
@@ -170,7 +175,7 @@ function SanDetail({ sanData }: { sanData: RemoteSanData }) {
                 <NextIcon />
               </div>
             ) : (
-              <div onClick={() => setEditState('idle')}>
+              <div onClick={postSaveCard}>
                 <CheckIcon />
               </div>
             )}
