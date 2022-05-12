@@ -44,8 +44,8 @@ function SanDetail({ sanData }: { sanData: RemoteSanData }) {
     }
   };
 
-  const saveCard = async () => {
-    if (!cardRef.current) return;
+  const getCardBlob = async () => {
+    if (!cardRef.current) return undefined;
     const scale = 3;
     const cardBlob = await domtoimage.toBlob(cardRef.current, {
       width: cardRef.current.clientWidth * scale,
@@ -55,7 +55,17 @@ function SanDetail({ sanData }: { sanData: RemoteSanData }) {
         transformOrigin: 'top left',
       },
     });
+    return cardBlob;
+  };
+
+  const saveCard = async () => {
+    const cardBlob = await getCardBlob();
+    if (!cardBlob) return;
     saveAs(cardBlob, `${name}.png`);
+  };
+
+  const shareCard = async () => {
+    console.log('share card by web api');
   };
 
   return (
@@ -200,9 +210,15 @@ function SanDetail({ sanData }: { sanData: RemoteSanData }) {
             </div>
           </div>
           <div className="edit-modal-comment">{comment}</div>
-          <div className="modal-bottom save-modal-bottom" onClick={saveCard}>
-            <div className="save-modal-save-button">{editState === 'save-modal-view' ? '저장하기' : '공유하기'}</div>
-          </div>
+          {editState === 'save-modal-view' ? (
+            <div className="modal-bottom save-modal-bottom" onClick={saveCard}>
+              <div className="save-modal-save-button">저장하기</div>
+            </div>
+          ) : (
+            <div className="modal-bottom save-modal-bottom" onClick={shareCard}>
+              <div className="save-modal-save-button">공유하기</div>
+            </div>
+          )}
         </FloatingModal>
       )}
     </main>
