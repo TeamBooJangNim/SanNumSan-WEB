@@ -1,0 +1,20 @@
+name: 'test-every-push'
+
+on: push
+
+jobs:
+  test:
+    name: Test lint, tsc, build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ secrets.NODE_VERSION }}
+      - run: yarn run lint
+        if: ${{ always() }}
+      - run: yarn run tsc
+        if: ${{ always() }}
+      - run: yarn run build
+        if: ${{ always() }}
