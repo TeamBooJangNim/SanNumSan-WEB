@@ -15,3 +15,9 @@ jobs:
 
       - name: Install Dependencies
         run: yarn install
+
+      - run: yarn run lint
+        if: ${{ always() }}
+
+      - run: yarn run tsc
+        if: ${{ always() }}
