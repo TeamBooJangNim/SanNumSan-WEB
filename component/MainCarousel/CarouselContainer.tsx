@@ -6,7 +6,7 @@ import styles from './styles/Carousel.module.scss';
 
 const CarouselContainer = () => {
   const { transformCSSValue, prevHandler, nextHandler, handleTouchStart, handleTouchMove } = useCarousel({
-    slideCount: 6,
+    slideCount: 5,
     slidesToShow: 2,
   });
   const mockImageList = new Array(10).fill(null);
