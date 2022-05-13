@@ -5,9 +5,6 @@ on: push
 jobs:
   install-dependencies:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-      node: [16]
     steps:
       - name: Checkout Commit
         uses: actions/checkout@v2
@@ -20,9 +17,6 @@ jobs:
 
   lint-format:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-      node: [16]
     needs: install-dependencies
     steps:
       - name: Checkout Commit
@@ -38,9 +32,6 @@ jobs:
 
   type-check:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-      node: [16]
     needs: install-dependencies
     steps:
       - name: Checkout Commit
@@ -56,9 +47,6 @@ jobs:
 
   run-test:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-      node: [16]
     needs: install-dependencies
     steps:
       - name: Checkout Commit
