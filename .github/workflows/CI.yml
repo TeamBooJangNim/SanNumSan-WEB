@@ -3,33 +3,71 @@ name: 'CI'
 on: push
 
 jobs:
-  continuous-integration:
+  install-dependencies:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+      node: [16]
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout Commit
+        uses: actions/checkout@v2
       - name: Use Node.js
         uses: actions/setup-node@v2
         with:
           node-version: ${{ secrets.NODE_VERSION }}
       - name: Install Dependencies
         run: yarn install
-      - name: Run Lint
-        run: yarn run lint
+
+  lint-format:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+      node: [16]
+    needs: install-dependencies
+    steps:
+      - name: Checkout Commit
+        uses: actions/checkout@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ secrets.NODE_VERSION }}
+      - name: Run lint
+        run: |
+          yarn run lint
         if: ${{ always() }}
+
+  type-check:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+      node: [16]
+    needs: install-dependencies
+    steps:
+      - name: Checkout Commit
+        uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
       - name: Check types
-        run: yarn run tsc
+        run: |
+          yarn run tsc
         if: ${{ always() }}
+
+  run-test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+      node: [16]
+    needs: install-dependencies
+    steps:
+      - name: Checkout Commit
+        uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
       - name: Run Test
-        run: yarn test:ci
+        run: |
+          yarn test:ci
         if: ${{ always() }}
-      - name: Send slack when failed
-        if: ${{ failure() }}
-        uses: ./.github/actions/slack-notify
-        with:
-          slack_incoming_url: ${{ secrets.SLACK_INCOMING_URL }}
-      - name: Send slack if completed
-        if: ${{ success() }}
-        uses: ./.github/actions/slack-notify
-        with:
-          status: success
-          slack_incoming_url: ${{ secrets.SLACK_INCOMING_URL }}
