@@ -6,8 +6,8 @@ const useCarousel = () => {
   const [touchCoordinate, setCoordinate] = useState<number>(0);
   const [isFirstTouch, setFirstTouch] = useState<boolean>(false);
 
-  const next = () => currentIndex <= ImageConstant.totalImage && setCurrentIndex((prevState) => prevState + 1);
-  const prev = () => currentIndex > 0 && setCurrentIndex((prevState) => prevState - 1);
+  const nextHandler = () => currentIndex <= ImageConstant.totalImage && setCurrentIndex((prevState) => prevState + 1);
+  const prevHandler = () => currentIndex > 0 && setCurrentIndex((prevState) => prevState - 1);
 
   const handleTouchStart = (e: React.TouchEvent) => {
     setCoordinate(e.touches[0].clientX);
@@ -18,15 +18,15 @@ const useCarousel = () => {
     const currentCoordinate = e.touches[0].clientX;
     const isValidNextMoveTouch = touchCoordinate - currentCoordinate > 5;
     const isValidPrevMoveTouch = touchCoordinate - currentCoordinate < -5;
-    isValidNextMoveTouch && next();
-    isValidPrevMoveTouch && prev();
+    isValidNextMoveTouch && nextHandler();
+    isValidPrevMoveTouch && prevHandler();
     setFirstTouch(false);
   };
 
   return {
     currentIndex,
-    prev,
-    next,
+    prevHandler,
+    nextHandler,
     handleTouchStart,
     handleTouchMove,
   };

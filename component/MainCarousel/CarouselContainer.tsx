@@ -6,12 +6,12 @@ import useCarousel from './useCarousel';
 import styles from './styles/Carousel.module.scss';
 
 const CarouselContainer = () => {
-  const { currentIndex, prev, next, handleTouchStart, handleTouchMove } = useCarousel();
+  const { currentIndex, prevHandler, nextHandler, handleTouchStart, handleTouchMove } = useCarousel();
   const mockImageList = new Array(10).fill(null);
 
   return (
     <section>
-      <CarouselHeader next={next} prev={prev} />
+      <CarouselHeader nextHandler={nextHandler} prevHandler={prevHandler} />
       <section className={styles.container}>
         <div className={styles.wrapper}>
           <div className={styles.contentWrapper} onTouchStart={handleTouchStart} onTouchMove={handleTouchMove}>
