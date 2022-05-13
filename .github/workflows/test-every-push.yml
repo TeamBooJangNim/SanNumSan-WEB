@@ -12,15 +12,15 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ secrets.NODE_VERSION }}
-      
-      - name: Install Dependencies:
+
+      - name: Install Dependencies
         run: yarn install
-      
+
       - run: yarn run lint
         if: ${{ always() }}
-      
+
       - run: yarn run tsc
         if: ${{ always() }}
-      
+
       - run: yarn run build
         if: ${{ always() }}
