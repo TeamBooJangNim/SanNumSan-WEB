@@ -1,5 +1,8 @@
 import '../styles/globals.scss';
 import '../styles/san-detail.scss';
+import '../component/FloatingModal/FloatingModal.scss';
+import '../component/BottomSheetModal/BottomSheetModal.scss';
+
 import type { AppProps } from 'next/app';
 import { wrapper } from '../store';
 
