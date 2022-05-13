@@ -1,6 +1,10 @@
-name: 'test-every-push'
+name: 'CI'
 
 on: push
+
+concurrency:
+  group: ${{ github.head_ref }}
+  cancel-in-progress: true
 
 jobs:
   test:
@@ -20,9 +24,6 @@ jobs:
         if: ${{ always() }}
 
       - run: yarn run tsc
-        if: ${{ always() }}
-
-      - run: yarn run build
         if: ${{ always() }}
 
       - name: Send slack when failed
