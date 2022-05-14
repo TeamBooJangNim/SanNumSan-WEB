@@ -1,0 +1,92 @@
+@import './fonts.scss';
+
+.san-detail {
+  .san-grid-table {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas:
+      'a a a'
+      'b c d'
+      'e e e';
+    & > div {
+      border-top: 0.5px solid white;
+    }
+  }
+
+  .title {
+    @extend .bold-50;
+  }
+
+  .title-wrapper {
+    grid-area: a;
+    padding: 28px 27px;
+  }
+  .level-wrapper {
+    grid-area: b;
+  }
+  .height-wrapper {
+    grid-area: c;
+  }
+  .length-wrapper {
+    grid-area: d;
+  }
+  .time-wrapper {
+    grid-area: e;
+    padding: 21.5px 38px 12px 38px;
+    border-bottom: 0.5px solid white;
+    & > div:nth-child(2) {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-top: 2px;
+      gap: 16px;
+      & div {
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+  .level-wrapper,
+  .height-wrapper {
+    border-right: 0.5px solid white;
+  }
+  .level-wrapper,
+  .height-wrapper,
+  .length-wrapper {
+    padding-top: 23px;
+    padding-bottom: 26px;
+    gap: 27px;
+    justify-content: center;
+    align-items: center;
+  }
+  .level-wrapper,
+  .height-wrapper,
+  .length-wrapper,
+  .time-wrapper {
+    display: flex;
+    flex-direction: column;
+    & div:nth-child(1) {
+      @extend .medium-13;
+    }
+    & div:nth-child(2) {
+      @extend .main-title;
+    }
+  }
+  .image-wrapper {
+    padding: 22px 18px;
+  }
+  .button-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1px 1fr;
+    margin: 45px 65px;
+    border-radius: 100px;
+    box-shadow: 0px 0px 16px 0px rgba(255, 255, 255, 0.3);
+    & svg {
+      justify-self: center;
+    }
+    & div {
+      background-color: white;
+      margin: 11px 0;
+    }
+  }
+}

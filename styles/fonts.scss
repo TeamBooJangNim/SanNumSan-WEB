@@ -1,0 +1,28 @@
+$FONT_WEIGHT_BOLD: 800;
+$FONT_WEIGHT_MIDDLE: 300;
+$FONT_WEIGHT_LIGHT: 100;
+
+.bold-50 {
+  font-weight: $FONT_WEIGHT_BOLD;
+  font-size: 50px;
+}
+
+.medium-13 {
+  font-weight: $FONT_WEIGHT_MIDDLE;
+  font-size: 13px;
+}
+
+.main-title {
+  font-weight: $FONT_WEIGHT_BOLD;
+  font-size: 20px;
+}
+
+.text-sub {
+  font-weight: $FONT_WEIGHT_LIGHT;
+  font-size: 13px;
+}
+
+.menu {
+  font-weight: $FONT_WEIGHT_MIDDLE;
+  font-size: 45px;
+}

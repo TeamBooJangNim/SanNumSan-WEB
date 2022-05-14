@@ -1,4 +1,5 @@
 import '../styles/globals.scss';
+import '../styles/san-detail.scss';
 import type { AppProps } from 'next/app';
 import { wrapper } from '../store';
 
