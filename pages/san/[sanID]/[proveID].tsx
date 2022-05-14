@@ -1,12 +1,11 @@
 import Header from '@/component/Header/Header';
 import Head from 'next/head';
 import React from 'react';
-import ClimbUpIcon from '@/assets/icon/icon_up.svg';
-import ClimbDownIcon from '@/assets/icon/icon_down.svg';
 import { api } from '@/service/api';
 import { GetServerSidePropsContext } from 'next';
 import { ProveData, RemoteSanData } from '@/service/api/types/san';
 import Image from 'next/image';
+import { SanDetailGridView } from '@/component/SanDetailGridView/SanDetailGridView';
 
 interface ProveDetailProps {
   sanData: RemoteSanData;
@@ -15,7 +14,6 @@ interface ProveDetailProps {
 
 export default function ProveDetail(props: ProveDetailProps) {
   const { sanData, proveData } = props;
-  const userName = '남주영';
   return (
     <div>
       <Head>
@@ -25,39 +23,7 @@ export default function ProveDetail(props: ProveDetailProps) {
       </Head>
       <Header />
       <section className="san-detail">
-        <div className="san-grid-table">
-          <div className="title-wrapper">
-            <div className="title">
-              {userName}님의 <br />
-              {sanData.name} 등반 기록
-            </div>
-          </div>
-          <div className="level-wrapper">
-            <div>level</div>
-            <div>{sanData.level}</div>
-          </div>
-          <div className="height-wrapper">
-            <div>height</div>
-            <div>{sanData.height}</div>
-          </div>
-          <div className="length-wrapper">
-            <div>length</div>
-            <div>{sanData.length}</div>
-          </div>
-          <div className="time-wrapper">
-            <div>climbing{'\n'}time</div>
-            <div>
-              <div>
-                <ClimbUpIcon />
-                <div>2:30</div>
-              </div>
-              <div>
-                <ClimbDownIcon />
-                <div>3:00</div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <SanDetailGridView {...{ ...sanData, name: `${proveData.userName}님의 \n${sanData.name} 등반 기록` }} />
         <div className="image-wrapper">
           <Image
             src={proveData.image}

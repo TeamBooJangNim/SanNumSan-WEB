@@ -8,8 +8,6 @@ import Image from 'next/image';
 import LogoGreen from '@/assets/img/logo_green.png';
 import ProceedIcon from '@/assets/icon/icon_proceed.svg';
 import ShareIcon from '@/assets/icon/icon_share.svg';
-import ClimbUpIcon from '@/assets/icon/icon_up.svg';
-import ClimbDownIcon from '@/assets/icon/icon_down.svg';
 import BeforeIcon from '@/assets/icon/icon_before.svg';
 import CheckIcon from '@/assets/icon/icon_check.svg';
 import NextIcon from '@/assets/icon/icon_next.svg';
@@ -19,9 +17,10 @@ import BottomSheetModal from '@/component/BottomSheetModal/BottomSheetModal';
 import domtoimage from 'dom-to-image';
 import { saveAs } from 'file-saver';
 import { getDateString } from '@/service/misc';
+import { SanDetailGridView } from '@/component/SanDetailGridView/SanDetailGridView';
 
 function SanDetail({ sanData }: { sanData: RemoteSanData }) {
-  const { name, level, height, length, defaultImage } = sanData;
+  const { name, height, length, defaultImage } = sanData;
   const [image, setImage] = React.useState(defaultImage);
   const [comment, setComment] = React.useState('');
   const [editState, setEditState] = React.useState<
@@ -88,36 +87,7 @@ function SanDetail({ sanData }: { sanData: RemoteSanData }) {
       </Head>
       <Header />
       <section className="san-detail">
-        <div className="san-grid-table">
-          <div className="title-wrapper">
-            <div className="title">{name}</div>
-          </div>
-          <div className="level-wrapper">
-            <div>level</div>
-            <div>{level}</div>
-          </div>
-          <div className="height-wrapper">
-            <div>height</div>
-            <div>{height}</div>
-          </div>
-          <div className="length-wrapper">
-            <div>length</div>
-            <div>{length}</div>
-          </div>
-          <div className="time-wrapper">
-            <div>climbing{'\n'}time</div>
-            <div>
-              <div>
-                <ClimbUpIcon />
-                <div>2:30</div>
-              </div>
-              <div>
-                <ClimbDownIcon />
-                <div>3:00</div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <SanDetailGridView {...sanData} />
         <div className="image-wrapper">
           <Image
             src={image}

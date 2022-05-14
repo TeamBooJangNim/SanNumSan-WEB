@@ -22,4 +22,5 @@ export interface ProveData {
   id: number;
   image: string;
   comment: string;
+  userName: string;
 }
