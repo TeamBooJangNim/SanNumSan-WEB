@@ -1,4 +1,5 @@
 import '../styles/globals.scss';
+import '../styles/reset.scss';
 import '../styles/san-detail.scss';
 import '../styles/prove-detail.scss';
 import '../component/FloatingModal/FloatingModal.scss';
