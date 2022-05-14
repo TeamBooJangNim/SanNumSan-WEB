@@ -22,6 +22,7 @@ export function sanMock(): SanService {
       id: proveID,
       image: 'https://user-images.githubusercontent.com/73823388/168329553-4e2acea9-26b7-4d23-8af4-27fa8f1c639a.png',
       comment: '북한산 등반 완료 우하하',
+      userName: '짱비 주영',
     };
   }
 

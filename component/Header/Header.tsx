@@ -1,7 +1,7 @@
-import styles from './Header.module.scss';
-import Image from 'next/image';
-import logo from '@/assets/img/logo.png';
 import hamburger from '@/assets/img/hamburger.png';
+import logo from '@/assets/img/logo.png';
+import Image from 'next/image';
+import styles from './Header.module.scss';
 
 const Header = () => {
   return (

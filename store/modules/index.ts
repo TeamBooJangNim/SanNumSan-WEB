@@ -1,6 +1,6 @@
-import { AnyAction } from 'redux';
 import { combineReducers } from '@reduxjs/toolkit';
 import { HYDRATE } from 'next-redux-wrapper';
+import { AnyAction } from 'redux';
 import counter, { ICounterState } from './counter';
 
 interface IState {

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 const useCarousel = ({ slideCount, slidesToShow }: { slideCount: number; slidesToShow: number }) => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
