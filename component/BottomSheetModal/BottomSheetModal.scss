@@ -26,9 +26,7 @@
     form {
       display: flex;
       flex-direction: column;
-      flex: 1;
       padding: 0 30px;
-      height: 100%;
     }
   }
 
@@ -47,15 +45,15 @@
     @extend .text-sub;
     color: var(--color-gray-100);
     align-self: flex-end;
-    flex: 1;
   }
 
   .bottom-sheet-submit-button {
+    @extend .text-sub;
     align-self: flex-end;
     margin-top: auto;
-    color: var(--color-gray-100);
+    color: var(--color-dark-grey);
     border: none;
-    @extend .text-sub;
     background-color: transparent;
+    padding: 20px 0;
   }
 }
