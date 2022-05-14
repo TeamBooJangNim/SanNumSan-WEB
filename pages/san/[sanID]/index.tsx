@@ -231,7 +231,7 @@ function SanDetail({ sanData }: { sanData: RemoteSanData }) {
 }
 
 export async function getServerSideProps({ params }: GetServerSidePropsContext) {
-  const id = +(params?.id ?? -1);
+  const id = +(params?.sanID ?? -1);
   const response = await api.sanService.getSanDetail(id);
   return { props: { sanData: response } };
 }
