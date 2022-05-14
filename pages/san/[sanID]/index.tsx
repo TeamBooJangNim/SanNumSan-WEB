@@ -65,7 +65,13 @@ function SanDetail({ sanData }: { sanData: RemoteSanData }) {
   };
 
   const shareCard = async () => {
-    console.log('share card by web api');
+    if (navigator.share) {
+      navigator.share({
+        url: 'https://b477-61-74-180-41.jp.ngrok.io/san/1/1',
+      });
+    } else {
+      alert('공유하기가 지원되지 않는 환경 입니다.');
+    }
   };
 
   const postSaveCard = () => {
