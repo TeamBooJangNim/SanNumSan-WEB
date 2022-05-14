@@ -10,7 +10,7 @@ const nextConfig = {
     return conf;
   },
   images: {
-    domains: ['images.france.fr'],
+    domains: ['images.france.fr', 'user-images.githubusercontent.com'],
   },
 };
 
