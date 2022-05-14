@@ -17,3 +17,9 @@ export interface UserSanData {
   date: string;
   record: string;
 }
+
+export interface ProveData {
+  id: number;
+  image: string;
+  comment: string;
+}

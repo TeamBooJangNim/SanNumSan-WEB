@@ -65,7 +65,13 @@ function SanDetail({ sanData }: { sanData: RemoteSanData }) {
   };
 
   const shareCard = async () => {
-    console.log('share card by web api');
+    if (navigator.share) {
+      navigator.share({
+        url: `${window.location.href}/1`,
+      });
+    } else {
+      alert('공유하기가 지원되지 않는 환경 입니다.');
+    }
   };
 
   const postSaveCard = () => {
@@ -231,7 +237,7 @@ function SanDetail({ sanData }: { sanData: RemoteSanData }) {
 }
 
 export async function getServerSideProps({ params }: GetServerSidePropsContext) {
-  const id = +(params?.id ?? -1);
+  const id = +(params?.sanID ?? -1);
   const response = await api.sanService.getSanDetail(id);
   return { props: { sanData: response } };
 }
