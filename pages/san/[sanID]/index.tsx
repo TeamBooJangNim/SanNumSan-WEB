@@ -12,8 +12,8 @@ import Header from '@/component/Header/Header';
 import { SanDetailGridView } from '@/component/SanDetailGridView/SanDetailGridView';
 import { api } from '@/service/api';
 import { RemoteSanData } from '@/service/api/types/san';
-import { getDateString } from '@/service/misc';
-import domtoimage from 'dom-to-image';
+import { getCanvasImageCropValues, getDateString } from '@/service/misc';
+// import domtoimage from 'dom-to-image';
 import { saveAs } from 'file-saver';
 import type { GetServerSidePropsContext } from 'next';
 import Image from 'next/image';
@@ -43,24 +43,70 @@ function SanDetail({ sanData }: { sanData: RemoteSanData }) {
     }
   };
 
-  const getCardBlob = async () => {
-    if (!cardRef.current) return undefined;
-    const scale = 3;
-    const cardBlob = await domtoimage.toBlob(cardRef.current, {
-      width: cardRef.current.clientWidth * scale,
-      height: cardRef.current.clientHeight * scale,
-      style: {
-        transform: 'scale(' + scale + ')',
-        transformOrigin: 'top left',
-      },
+  // const getCardBlob = async () => {
+  //   if (!cardRef.current) return undefined;
+  //   const scale = 3;
+  //   const cardBlob = await domtoimage.toBlob(cardRef.current, {
+  //     width: cardRef.current.clientWidth * scale,
+  //     height: cardRef.current.clientHeight * scale,
+  //     style: {
+  //       transform: 'scale(' + scale + ')',
+  //       transformOrigin: 'top left',
+  //     },
+  //   });
+  //   return cardBlob;
+  // };
+
+  const getCardBlob2 = async () => {
+    const scaler = 3;
+    return new Promise<null | Blob>((resolve) => {
+      const canvas = document.createElement('canvas');
+      canvas.width = 316 * scaler;
+      canvas.height = 316 * scaler;
+      const canvasContext = canvas.getContext('2d');
+      if (canvasContext) {
+        fetch(image)
+          .then((sanImageSource) => sanImageSource.blob())
+          .then((sanImageBlob) => createImageBitmap(sanImageBlob))
+          .then((sanImage) => {
+            const { shiftX, shiftY, imageCropWidth, imageCropHeight } = getCanvasImageCropValues(
+              316 * scaler,
+              316 * scaler,
+              sanImage.width,
+              sanImage.height,
+            );
+            canvasContext.drawImage(
+              sanImage,
+              shiftX,
+              shiftY,
+              imageCropWidth,
+              imageCropHeight,
+              0,
+              0,
+              316 * scaler,
+              316 * scaler,
+            );
+            canvasContext.font = `bold ${20 * scaler}px 'Pretendard'`;
+            canvasContext.fillStyle = 'white';
+            canvasContext.fillText(getDateString(new Date()), 22 * scaler, 212 * scaler);
+            canvasContext.fillText(length.toString() + 'km', 22 * scaler, 243 * scaler);
+            canvasContext.fillText(height.toString() + 'm', 22 * scaler, 274 * scaler);
+            canvas.toBlob((blob) => {
+              resolve(blob);
+            });
+          });
+      } else resolve(null);
     });
-    return cardBlob;
   };
 
   const saveCard = async () => {
-    const cardBlob = await getCardBlob();
-    if (!cardBlob) return;
-    saveAs(cardBlob, `${name}.png`);
+    try {
+      const cardBlob = await getCardBlob2();
+      if (!cardBlob) return;
+      saveAs(cardBlob, `${name}.png`);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const shareCard = async () => {
