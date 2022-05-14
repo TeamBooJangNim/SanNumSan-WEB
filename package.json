@@ -13,6 +13,8 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.1",
+    "dom-to-image": "^2.6.0",
+    "file-saver": "^2.0.5",
     "next": "12.1.4",
     "next-redux-wrapper": "^7.0.5",
     "node-sass": "^7.0.1",
@@ -27,6 +29,8 @@
     "@svgr/webpack": "^6.2.1",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.2.0",
+    "@types/dom-to-image": "^2",
+    "@types/file-saver": "^2",
     "@types/jest": "^27.5.1",
     "@types/node": "17.0.23",
     "@types/prettier": "^2",

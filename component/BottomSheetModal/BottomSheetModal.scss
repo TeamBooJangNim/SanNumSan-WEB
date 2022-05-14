@@ -1,0 +1,61 @@
+@import '../../styles/fonts.scss';
+
+.bottom-sheet-modal {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  .bottom-sheet-modal-background {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    background-color: #000000c4;
+  }
+
+  .bottom-sheet-modal-foreground {
+    width: 100vw;
+    height: calc(100vh - 104px);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: white;
+    form {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      padding: 0 30px;
+      height: 100%;
+    }
+  }
+
+  .bottom-sheet-textarea {
+    @extend .medium-13;
+    outline: none;
+    border: 0;
+    width: 100%;
+    height: 96px;
+    margin-top: 40px;
+    box-sizing: border-box;
+    resize: none;
+  }
+
+  .bottom-sheet-text-length {
+    @extend .text-sub;
+    color: var(--color-gray-100);
+    align-self: flex-end;
+    flex: 1;
+  }
+
+  .bottom-sheet-submit-button {
+    align-self: flex-end;
+    margin-top: auto;
+    color: var(--color-gray-100);
+    border: none;
+    @extend .text-sub;
+    background-color: transparent;
+  }
+}
