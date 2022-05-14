@@ -1,5 +1,5 @@
-import ClimbUpIcon from '@/assets/icon/icon_up.svg';
 import ClimbDownIcon from '@/assets/icon/icon_down.svg';
+import ClimbUpIcon from '@/assets/icon/icon_up.svg';
 import { RemoteSanData } from '@/service/api/types/san';
 
 export const SanDetailGridView = (props: RemoteSanData) => (

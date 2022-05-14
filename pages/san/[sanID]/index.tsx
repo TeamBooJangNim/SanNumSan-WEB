@@ -1,23 +1,23 @@
-import type { GetServerSidePropsContext } from 'next';
-import React from 'react';
-import Header from '@/component/Header/Header';
-import { RemoteSanData } from '@/service/api/types/san';
-import { api } from '@/service/api';
-import Image from 'next/image';
-import LogoGreen from '@/assets/img/logo_green.png';
-import ProceedIcon from '@/assets/icon/icon_proceed.svg';
-import ShareIcon from '@/assets/icon/icon_share.svg';
 import BeforeIcon from '@/assets/icon/icon_before.svg';
 import CheckIcon from '@/assets/icon/icon_check.svg';
-import NextIcon from '@/assets/icon/icon_next.svg';
 import DownloadIcon from '@/assets/icon/icon_download.svg';
-import FloatingModal from '@/component/FloatingModal/FloatingModal';
+import NextIcon from '@/assets/icon/icon_next.svg';
+import ProceedIcon from '@/assets/icon/icon_proceed.svg';
+import ShareIcon from '@/assets/icon/icon_share.svg';
+import LogoGreen from '@/assets/img/logo_green.png';
 import BottomSheetModal from '@/component/BottomSheetModal/BottomSheetModal';
+import FloatingModal from '@/component/FloatingModal/FloatingModal';
+import { BaseHead } from '@/component/Head/Head';
+import Header from '@/component/Header/Header';
+import { SanDetailGridView } from '@/component/SanDetailGridView/SanDetailGridView';
+import { api } from '@/service/api';
+import { RemoteSanData } from '@/service/api/types/san';
+import { getDateString } from '@/service/misc';
 import domtoimage from 'dom-to-image';
 import { saveAs } from 'file-saver';
-import { getDateString } from '@/service/misc';
-import { SanDetailGridView } from '@/component/SanDetailGridView/SanDetailGridView';
-import { BaseHead } from '@/component/Head/Head';
+import type { GetServerSidePropsContext } from 'next';
+import Image from 'next/image';
+import React from 'react';
 
 function SanDetail({ sanData }: { sanData: RemoteSanData }) {
   const { name, height, length, defaultImage } = sanData;

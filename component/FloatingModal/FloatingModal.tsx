@@ -1,5 +1,5 @@
-import React from 'react';
 import IconReset from '@/assets/icon/icon_reset.svg';
+import React from 'react';
 
 type FloatingModalProps = {
   children: React.ReactNode;

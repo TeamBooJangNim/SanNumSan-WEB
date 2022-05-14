@@ -1,8 +1,7 @@
 import CarouselCard from './CarouselCard';
 import CarouselHeader from './CarouselHeader';
-
-import useCarousel from './useCarousel';
 import styles from './styles/Carousel.module.scss';
+import useCarousel from './useCarousel';
 
 const CarouselContainer = () => {
   const { transformCSSValue, prevHandler, nextHandler, handleTouchStart, handleTouchMove } = useCarousel({

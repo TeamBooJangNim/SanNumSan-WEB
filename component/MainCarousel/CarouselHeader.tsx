@@ -1,6 +1,6 @@
-import styles from './styles/CarouselHeader.module.scss';
 import LeftArrowButton from '@/assets/icon/leftArrow.svg';
 import RightArrowButton from '@/assets/icon/rightArrow.svg';
+import styles from './styles/CarouselHeader.module.scss';
 
 const CarouselHeader = ({ nextHandler, prevHandler }: { nextHandler: () => void; prevHandler: () => void }) => {
   return (

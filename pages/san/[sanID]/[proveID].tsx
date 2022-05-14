@@ -1,11 +1,11 @@
-import Header from '@/component/Header/Header';
-import React from 'react';
-import { api } from '@/service/api';
-import { GetServerSidePropsContext } from 'next';
-import { ProveData, RemoteSanData } from '@/service/api/types/san';
-import Image from 'next/image';
-import { SanDetailGridView } from '@/component/SanDetailGridView/SanDetailGridView';
 import { BaseHead } from '@/component/Head/Head';
+import Header from '@/component/Header/Header';
+import { SanDetailGridView } from '@/component/SanDetailGridView/SanDetailGridView';
+import { api } from '@/service/api';
+import { ProveData, RemoteSanData } from '@/service/api/types/san';
+import { GetServerSidePropsContext } from 'next';
+import Image from 'next/image';
+import React from 'react';
 
 interface ProveDetailProps {
   sanData: RemoteSanData;
