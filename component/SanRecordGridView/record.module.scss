@@ -1,0 +1,34 @@
+@import '../../styles/fonts.scss';
+
+.wrapper {
+  padding: 1.5rem;
+
+  .title {
+    @extend .main-title;
+    white-space: pre-wrap;
+  }
+
+  .san__grid__container {
+    margin-top: 1.5rem;
+    display: grid;
+    place-items: center;
+    grid-template-columns: repeat(3, 1fr);
+    & > div {
+      border-top: 0.5px solid white;
+    }
+  }
+
+  .card {
+    width: 4rem;
+    margin-bottom: 1rem;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .name {
+      margin-top: 0.5rem;
+    }
+  }
+}
