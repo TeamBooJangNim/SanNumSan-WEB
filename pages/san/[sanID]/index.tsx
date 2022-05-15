@@ -115,7 +115,8 @@ function SanDetail({ sanData }: { sanData: RemoteSanData }) {
         url: `${window.location.href}/1`,
       });
     } else {
-      alert('공유하기가 지원되지 않는 환경 입니다.');
+      navigator.clipboard.writeText(`${window.location.href}/1`);
+      //alert('공유하기가 지원되지 않는 환경 입니다.');
     }
   };
 
